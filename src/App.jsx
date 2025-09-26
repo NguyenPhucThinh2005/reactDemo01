@@ -1,6 +1,7 @@
 import "./App.css";
 import ComContainer from "./components/ComContainer";
 import Content from "./components/Content";
+import ContextEx from "./components/ContextEx";
 import EffectDemo from "./components/EffectDemo";
 import Footer from "./components/Footer";
 import FuncCount from "./components/FuncCount";
@@ -10,7 +11,8 @@ function App() {
   return (
     <>
       <NavBar />
-      <Content />
+      <ContextEx />
+      {/* <Content /> */}
       {/* <EffectDemo /> */}
       <Footer />
     </>
