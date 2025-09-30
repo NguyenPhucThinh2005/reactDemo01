@@ -1,40 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
+
+// 2 theme: light và dark
 const themes = {
-  dark: {
-    backgroundColor: "black",
-    color: "white",
-  },
   light: {
     backgroundColor: "white",
     color: "black",
   },
-};
-const initialState = {
-  dark: false,
-  theme: themes.light,
-  toggle: () => {},
+  dark: {
+    backgroundColor: "black",
+    color: "white",
+  },
 };
 
-const ThemeContext = React.createContext(initialState);
+// Tạo Context
+const ThemeContext = createContext();
 
+// Provider
 function ThemeProvider({ children }) {
-  const [dark, setDark] = useState(false); // Default theme is light
-  // On mount, read the preferred theme from the persistence
-  useEffect(() => {
-    const isDark = localStorage.getItem("dark") === "true";
-    setDark(isDark);
-  }, [dark]);
-  // To toggle between dark and light modes
+  const [theme, setTheme] = useState(themes.light);
+
   const toggle = () => {
-    const isDark = !dark;
-    localStorage.setItem("dark", JSON.stringify(isDark));
-    setDark(isDark);
+    setTheme((prevTheme) =>
+      prevTheme === themes.light ? themes.dark : themes.light
+    );
   };
-  const theme = dark ? themes.dark : themes.light;
+
   return (
-    <ThemeContext.Provider value={{ theme, dark, toggle }}>
+    <ThemeContext.Provider value={{ theme, toggle }}>
       {children}
     </ThemeContext.Provider>
   );
 }
+
 export { ThemeProvider, ThemeContext };
