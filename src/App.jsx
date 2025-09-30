@@ -1,20 +1,12 @@
 import "./App.css";
-import ComContainer from "./components/ComContainer";
-import Content from "./components/Content";
-import ContextEx from "./components/ContextEx";
-import EffectDemo from "./components/EffectDemo";
-import Footer from "./components/Footer";
-import FuncCount from "./components/FuncCount";
 import NavBar from "./components/NavBar";
-
-import { ThemeProvider, ThemeContext } from "./components/ThemeContext";
-import ThemeButton from "./components/ThemeButton";
 import { useContext } from "react";
 import { Route, Routes } from "react-router";
-import HomePage from "./components/HomePage";
-import Welcome from "./components/Welcome";
+import Players from "./components/Players";
+import Detail from "./components/Detail";
+import Contact from "./components/Contact";
+import { ThemeContext } from "./components/ThemeContext";
 
-// 👇 Component bọc layout để áp theme cho toàn web
 function ThemedLayout({ children }) {
   const { theme } = useContext(ThemeContext);
 
@@ -23,7 +15,7 @@ function ThemedLayout({ children }) {
       style={{
         backgroundColor: theme.backgroundColor,
         color: theme.color,
-        minHeight: "100vh", // đảm bảo phủ toàn màn hình
+        minHeight: "100vh",
       }}
     >
       {children}
@@ -34,13 +26,14 @@ function ThemedLayout({ children }) {
 function App() {
   return (
     <>
-      <ThemeProvider>
-        <NavBar />
+      <NavBar />
+      <ThemedLayout>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/welcome/:id" element={<Welcome />} />
+          <Route path="/" element={<Players />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
-      </ThemeProvider>
+      </ThemedLayout>
     </>
   );
 }

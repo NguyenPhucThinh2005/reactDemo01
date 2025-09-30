@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
 
 export default function NavBar() {
-  const { theme, toggle, dark } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <nav
@@ -34,13 +34,6 @@ export default function NavBar() {
           </a>
         </li>
       </ul>
-
-      <button
-        className="btn btn-sm btn-outline-light switch-mode"
-        onClick={toggle}
-      >
-        Switch Nav to {!dark ? "Dark" : "Light"} mode
-      </button>
     </nav>
   );
 }
