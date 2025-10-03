@@ -6,6 +6,7 @@ import Players from "./components/Players";
 import Detail from "./components/Detail";
 import Contact from "./components/Contact";
 import { ThemeContext } from "./components/ThemeContext";
+import HomePage from "./components/HomePage";
 
 function ThemedLayout({ children }) {
   const { theme } = useContext(ThemeContext);
@@ -29,6 +30,7 @@ function App() {
       <NavBar />
       <ThemedLayout>
         <Routes>
+          <Route path="/homePage" element={<HomePage />} />
           <Route path="/" element={<Players />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/contact" element={<Contact />} />
